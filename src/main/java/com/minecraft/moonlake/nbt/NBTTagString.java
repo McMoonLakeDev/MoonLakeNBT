@@ -28,6 +28,10 @@ public class NBTTagString extends NBTTagDatable<String> {
         this("", "");
     }
 
+    public NBTTagString(String name) {
+        this(name, "");
+    }
+
     public NBTTagString(String name, String value) {
         super(name, value);
     }

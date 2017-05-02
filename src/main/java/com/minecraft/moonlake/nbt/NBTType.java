@@ -114,7 +114,7 @@ public enum NBTType {
             case 7:
                 return new NBTTagByteArray(name);
             case 8:
-                return new NBTTagString(name, "");
+                return new NBTTagString(name);
             case 9:
                 return new NBTTagList<>(name);
             case 10:

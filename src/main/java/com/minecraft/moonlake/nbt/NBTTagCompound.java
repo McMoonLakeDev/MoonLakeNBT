@@ -206,22 +206,34 @@ public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implemen
     }
 
     public NBTTagList<?> getList(String name) {
+        return getList(name, null);
+    }
+
+    public NBTTagList<?> getList(String name, NBTTagList<?> def) {
         NBTBase nbt = get(name);
         if(nbt != null && nbt instanceof NBTTagList)
             return (NBTTagList<?>) nbt;
-        return null;
+        return def;
     }
 
     public NBTTagCompound getCompound(String name) {
+        return getCompound(name, null);
+    }
+
+    public NBTTagCompound getCompound(String name, NBTTagCompound def) {
         NBTBase nbt = get(name);
         if(nbt != null && nbt instanceof NBTTagCompound)
             return ((NBTTagCompound) nbt);
-        return null;
+        return def;
     }
 
     public String getString(String name) {
+        return getString(name, null);
+    }
+
+    public String getString(String name, String def) {
         NBTBase nbt = get(name);
-        return nbt != null && nbt instanceof NBTTagString ? ((NBTTagString) nbt).getValue() : null;
+        return nbt != null && nbt instanceof NBTTagString ? ((NBTTagString) nbt).getValue() : def;
     }
 
     public boolean getBoolean(String name) {
