@@ -23,7 +23,7 @@ import java.io.DataOutput;
 import java.io.IOException;
 
 /**
- * <h1>NBTTagShort</h1>
+ * <h1>NBTTagString</h1>
  * NBT 标签字符串类型数据
  *
  * @version 1.0
