@@ -22,8 +22,19 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+/**
+ * <h1>NBTTagEnd</h1>
+ * NBT 结束标签
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTBase
+ */
 public class NBTTagEnd extends NBTBase {
 
+    /**
+     * NBT 结束标签构造函数
+     */
     public NBTTagEnd() {
         super("");
     }

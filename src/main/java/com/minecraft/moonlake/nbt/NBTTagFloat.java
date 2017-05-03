@@ -22,24 +22,57 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+/**
+ * <h1>NBTTagFloat</h1>
+ * NBT 标签单精度浮点类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagNumber
+ * @see Float
+ */
 public class NBTTagFloat extends NBTTagNumber<Float> {
 
+    /**
+     * NBT 标签单精度浮点类型数据构造函数
+     */
     public NBTTagFloat() {
         this(0f);
     }
 
+    /**
+     * NBT 标签单精度浮点类型数据构造函数
+     *
+     * @param value 值
+     */
     public NBTTagFloat(float value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签单精度浮点类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagFloat(String name) {
         this(name, 0f);
     }
 
+    /**
+     * NBT 标签单精度浮点类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 值
+     */
     public NBTTagFloat(String name, Float value) {
         super(name, value);
     }
 
+    /**
+     * 设置此 NBT 标签单精度浮点数据的值
+     *
+     * @param value 新值
+     */
     public void set(float value) {
         super.value = value;
     }

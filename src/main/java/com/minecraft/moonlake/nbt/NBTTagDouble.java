@@ -22,24 +22,57 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+/**
+ * <h1>NBTTagDouble</h1>
+ * NBT 标签双精度浮点类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagNumber
+ * @see Double
+ */
 public class NBTTagDouble extends NBTTagNumber<Double> {
 
+    /**
+     * NBT 标签双精度浮点类型数据构造函数
+     */
     public NBTTagDouble() {
         this(0d);
     }
 
+    /**
+     * NBT 标签双精度浮点类型数据构造函数
+     *
+     * @param value 值
+     */
     public NBTTagDouble(double value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签双精度浮点类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagDouble(String name) {
         this(name, 0d);
     }
 
+    /**
+     * NBT 标签双精度浮点类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 值
+     */
     public NBTTagDouble(String name, Double value) {
         super(name, value);
     }
 
+    /**
+     * 设置此 NBT 标签双精度浮点数据的值
+     *
+     * @param value 新值
+     */
     public void set(double value) {
         super.value = value;
     }

@@ -23,20 +23,48 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * <h1>NBTTagCompound</h1>
+ * NBT 复合类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagDatable
+ * @see Iterable
+ */
 public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implements Iterable<NBTBase> {
 
+    /**
+     * NBT 复合类型数据构造函数
+     */
     public NBTTagCompound() {
         this(new HashMap<>());
     }
 
+    /**
+     * NBT 复合类型数据构造函数
+     *
+     * @param value 值
+     */
     public NBTTagCompound(Map<String, NBTBase> value) {
         this("", value);
     }
 
+    /**
+     * NBT 复合类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagCompound(String name) {
         this(name, new HashMap<>());
     }
 
+    /**
+     * NBT 复合类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 值
+     */
     public NBTTagCompound(String name, Map<String, NBTBase> value) {
         super(name, value);
     }
@@ -46,78 +74,184 @@ public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implemen
         return NBTType.COMPOUND;
     }
 
+    /**
+     * 设置此 NBT 复合标签的数据值
+     *
+     * @param value 新值
+     */
     @Override
     public void setValue(Map<String, NBTBase> value) {
         super.value = new HashMap<>(value);
     }
 
+    /**
+     * 获取此 NBT 复合标签的数据值
+     */
     @Override
     public Map<String, NBTBase> getValue() {
         // 创建一个新的哈希表并拷贝值, 而不是返回当前 value 引用
         return new HashMap<>(value);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的元素值
+     *
+     * @param name 特殊名
+     * @return 对应特殊名的元素值 | null
+     */
     public NBTBase get(String name) {
         return value.get(name);
     }
 
+    /**
+     * 将指定 NBT 标签添加到此 NBT 复合标签内
+     *
+     * @param nbt NBT 标签
+     * @param <T> 类型
+     * @return 之前与特殊名关联的值, 如果没有映射关系则返回 null
+     */
     @SuppressWarnings("unchecked")
     public <T extends NBTBase> T put(T nbt) {
         return (T) value.put(nbt.getName(), nbt);
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和标签值
+     *
+     * @param name 特殊名
+     * @param nbt 标签值
+     */
     public void set(String name, NBTBase nbt) {
         this.value.put(name, nbt);
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和字节类型标签值
+     *
+     * @param name 特殊名
+     * @param value 字节类型标签值
+     */
     public void setByte(String name, byte value) {
         this.value.put(name, new NBTTagByte(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和字节类型标签值
+     *
+     * @param name 特殊名
+     * @param value 字节类型标签值
+     */
     public void setByte(String name, int value) {
         setByte(name, (byte) value);
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和短整数类型标签值
+     *
+     * @param name 特殊名
+     * @param value 短整数类型标签值
+     */
     public void setShort(String name, short value) {
         this.value.put(name, new NBTTagShort(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和短整数类型标签值
+     *
+     * @param name 特殊名
+     * @param value 短整数类型标签值
+     */
     public void setShort(String name, int value) {
         setShort(name, (short) value);
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和整数类型标签值
+     *
+     * @param name 特殊名
+     * @param value 整数类型标签值
+     */
     public void setInteger(String name, int value) {
         this.value.put(name, new NBTTagInteger(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和长整数类型标签值
+     *
+     * @param name 特殊名
+     * @param value 长整数类型标签值
+     */
     public void setLong(String name, long value) {
         this.value.put(name, new NBTTagLong(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和单精度浮点数类型标签值
+     *
+     * @param name 特殊名
+     * @param value 单精度浮点数类型标签值
+     */
     public void setFloat(String name, float value) {
         this.value.put(name, new NBTTagFloat(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和双精度浮点数类型标签值
+     *
+     * @param name 特殊名
+     * @param value 双精度浮点数类型标签值
+     */
     public void setDouble(String name, double value) {
         this.value.put(name, new NBTTagDouble(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和字节数组类型标签值
+     *
+     * @param name 特殊名
+     * @param value 字节数组类型标签值
+     */
     public void setByteArray(String name, byte[] value) {
         this.value.put(name, new NBTTagByteArray(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和整数数组类型标签值
+     *
+     * @param name 特殊名
+     * @param value 整数数组类型标签值
+     */
     public void setIntegerArray(String name, int[] value) {
         this.value.put(name, new NBTTagIntegerArray(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和字符串类型标签值
+     *
+     * @param name 特殊名
+     * @param value 字符串类型标签值
+     */
     public void setString(String name, String value) {
         this.value.put(name, new NBTTagString(name, value));
     }
 
+    /**
+     * 将此 NBT 复合标签设置指定特殊名和布尔类型标签值
+     *
+     * @param name 特殊名
+     * @param value 布尔类型标签值
+     * @see #setByte(String, byte)
+     */
     public void setBoolean(String name, boolean value) {
         setByte(name, value ? (byte) 1 : 0);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的数字类型元素值
+     *
+     * @param name 特殊名
+     * @return 数字类型元素值 | null
+     */
     protected Number getNumber(String name) {
         NBTBase nbt = get(name);
         if(nbt != null && nbt instanceof NBTTagNumber)
@@ -125,90 +259,221 @@ public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implemen
         return null;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的字节类型元素值
+     *
+     * @param name 特殊名
+     * @return 字节类型元素值 | 0
+     */
     public byte getByte(String name) {
         return getByte(name, 0);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的字节类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 字节类型元素值 | def
+     */
     public byte getByte(String name, int def) {
         return getByte(name, (byte) def);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的字节类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 字节类型元素值 | def
+     */
     public byte getByte(String name, byte def) {
         Number value = getNumber(name);
         return value != null ? value.byteValue() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的短整数类型元素值
+     *
+     * @param name 特殊名
+     * @return 短整数类型元素值 | 0
+     */
     public short getShort(String name) {
         return getShort(name, 0);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的短整数类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 短整数类型元素值 | def
+     */
     public short getShort(String name, int def) {
         return getShort(name, (byte) def);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的短整数类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 短整数类型元素值 | def
+     */
     public short getShort(String name, short def) {
         Number value = getNumber(name);
         return value != null ? value.shortValue() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的整数类型元素值
+     *
+     * @param name 特殊名
+     * @return 整数类型元素值 | 0
+     */
     public int getInteger(String name) {
         return getInteger(name, 0);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的整数类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 整数类型元素值 | def
+     */
     public int getInteger(String name, int def) {
         Number value = getNumber(name);
         return value != null ? value.intValue() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的长整数类型元素值
+     *
+     * @param name 特殊名
+     * @return 长整数类型元素值 | 0
+     */
     public long getLong(String name) {
         return getLong(name, 0);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的长整数类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 长整数类型元素值 | def
+     */
     public long getLong(String name, long def) {
         Number value = getNumber(name);
         return value != null ? value.longValue() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的单精度浮点数类型元素值
+     *
+     * @param name 特殊名
+     * @return 单精度浮点数类型元素值 | 0
+     */
     public float getFloat(String name) {
         return getFloat(name, 0);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的单精度浮点数类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 单精度浮点数类型元素值 | def
+     */
     public float getFloat(String name, float def) {
         Number value = getNumber(name);
         return value != null ? value.floatValue() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的双精度浮点数类型元素值
+     *
+     * @param name 特殊名
+     * @return 双精度浮点数类型元素值 | 0
+     */
     public double getDouble(String name) {
         return getDouble(name, 0);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的双精度浮点数类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 双精度浮点数类型元素值 | def
+     */
     public double getDouble(String name, double def) {
         Number value = getNumber(name);
         return value != null ? value.doubleValue() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的字节数组类型元素值
+     *
+     * @param name 特殊名
+     * @return 字节数组类型元素值 | null
+     */
     public byte[] getByteArray(String name) {
-        return getByteArray(name, new byte[0]);
+        return getByteArray(name, null);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的字节数组类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 字节数组类型元素值 | def
+     */
     public byte[] getByteArray(String name, byte[] def) {
         NBTBase nbt = get(name);
         return nbt != null && nbt instanceof NBTTagByteArray ? ((NBTTagByteArray) nbt).get() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的整数数组类型元素值
+     *
+     * @param name 特殊名
+     * @return 整数数组类型元素值 | null
+     */
     public int[] getIntegerArray(String name) {
-        return getIntegerArray(name, new int[0]);
+        return getIntegerArray(name, null);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的整数数组类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 整数数组类型元素值 | def
+     */
     public int[] getIntegerArray(String name, int[] def) {
         NBTBase nbt = get(name);
         return nbt != null && nbt instanceof NBTTagIntegerArray ? ((NBTTagIntegerArray) nbt).get() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的列表类型元素值
+     *
+     * @param name 特殊名
+     * @return 列表类型元素值 | null
+     */
     public NBTTagList<?> getList(String name) {
         return getList(name, null);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的列表类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 列表类型元素值 | def
+     */
     public NBTTagList<?> getList(String name, NBTTagList<?> def) {
         NBTBase nbt = get(name);
         if(nbt != null && nbt instanceof NBTTagList)
@@ -216,10 +481,23 @@ public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implemen
         return def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的复合类型元素值
+     *
+     * @param name 特殊名
+     * @return 复合类型元素值 | null
+     */
     public NBTTagCompound getCompound(String name) {
         return getCompound(name, null);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的复合类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 复合类型元素值 | def
+     */
     public NBTTagCompound getCompound(String name, NBTTagCompound def) {
         NBTBase nbt = get(name);
         if(nbt != null && nbt instanceof NBTTagCompound)
@@ -227,43 +505,98 @@ public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implemen
         return def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的字符串类型元素值
+     *
+     * @param name 特殊名
+     * @return 字符串类型元素值 | null
+     */
     public String getString(String name) {
         return getString(name, null);
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的字符串类型元素值
+     *
+     * @param name 特殊名
+     * @param def 如果此特殊名没有关联的值则返回的默认值
+     * @return 字符串类型元素值 | def
+     */
     public String getString(String name, String def) {
         NBTBase nbt = get(name);
         return nbt != null && nbt instanceof NBTTagString ? ((NBTTagString) nbt).getValue() : def;
     }
 
+    /**
+     * 获取此 NBT 复合标签指定特殊名的布尔类型元素值
+     *
+     * @param name 特殊名
+     * @return 布尔类型元素值 | false
+     * @see #getByte(String)
+     */
     public boolean getBoolean(String name) {
         return getByte(name) != 0;
     }
 
+    /**
+     * 将指定特殊名从此 NBT 复合标签内删除
+     *
+     * @param name 特殊名
+     * @return 之前与特殊名关联的值, 如果没有映射关系则返回 null
+     */
     public NBTBase remove(String name) {
         return value.remove(name);
     }
 
+    /**
+     * 获取此 NBT 复合标签的元素是否为空
+     *
+     * @return 元素是否为空
+     */
     public boolean isEmpty() {
         return value.isEmpty();
     }
 
+    /**
+     * 获取此 NBT 复合标签是否拥有指定特殊名的元素值
+     *
+     * @param name 特殊名
+     * @return true 则拥有, 否则 false
+     */
     public boolean contains(String name) {
         return value.containsKey(name);
     }
 
+    /**
+     * 获取此 NBT 复合标签的元素数量大小
+     *
+     * @return 数量大小
+     */
     public int size() {
         return value.size();
     }
 
+    /**
+     * 移除此 NBT 复合标签的所有元素标签
+     */
     public void clear() {
         this.value.clear();
     }
 
+    /**
+     * 获取此 NBT 复合标签的特殊名集合
+     *
+     * @return 特殊名集合
+     */
     public Set<String> keySet() {
         return value.keySet();
     }
 
+    /**
+     * 获取此 NBT 复合标签的元素值集合
+     *
+     * @return 元素值集合
+     */
     public Collection<NBTBase> values() {
         return value.values();
     }
@@ -316,6 +649,12 @@ public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implemen
         return toString(false);
     }
 
+    /**
+     * 将次 NBT 复合标签转换为字符串
+     *
+     * @param json 是否 Json 格式
+     * @return 字符串
+     */
     public String toString(boolean json) {
         StringBuilder builder = new StringBuilder("{");
         for(Iterator<String> iterator = value.keySet().iterator(); iterator.hasNext();) {

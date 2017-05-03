@@ -22,6 +22,13 @@ import java.io.*;
 import java.util.zip.GZIPInputStream;
 import java.util.zip.GZIPOutputStream;
 
+/**
+ * <h1>NBTUtil</h1>
+ * NBT 利用类
+ *
+ * @version 1.0
+ * @author Month_Light
+ */
 public final class NBTUtil {
 
     static {
@@ -30,10 +37,24 @@ public final class NBTUtil {
     private NBTUtil() {
     }
 
+    /**
+     * 从指定输入流读取 NBT 标签对象
+     *
+     * @param input 输入流
+     * @return NBT 标签对象
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     public static NBTBase read(InputStream input) throws IOException {
         return read((DataInput) new DataInputStream(input));
     }
 
+    /**
+     * 从指定数据输入流读取 NBT 标签对象
+     *
+     * @param input 数据输入流
+     * @return NBT 标签对象
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     @SuppressWarnings("all")
     public static NBTBase read(DataInput input) throws IOException {
         int typeId = input.readUnsignedByte();
@@ -45,20 +66,49 @@ public final class NBTUtil {
         return nbt;
     }
 
+    /**
+     * 将指定 NBT 标签对象写入到输出流
+     *
+     * @param output 输出流
+     * @param nbt NBT 标签对象
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     public static void write(OutputStream output, NBTBase nbt) throws IOException {
         write((DataOutput) new DataOutputStream(output), nbt);
     }
 
+    /**
+     * 将指定 NBT 标签对象写入到数据输出流
+     *
+     * @param output 数据输出流
+     * @param nbt NBT 标签对象
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     public static void write(DataOutput output, NBTBase nbt) throws IOException {
         output.writeByte(nbt.getTypeId());
         output.writeUTF(nbt.getName());
         nbt.write(output);
     }
 
+    /**
+     * 从指定文件读取 NBT 复合标签对象
+     *
+     * @param file 文件
+     * @return NBT 复合标签对象
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     public static NBTTagCompound readFile(File file) throws IOException {
         return readFile(file, true);
     }
 
+    /**
+     * 从指定文件读取 NBT 复合标签对象
+     *
+     * @param file 文件
+     * @param compressed 是否压缩数据
+     * @return NBT 复合标签对象
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     public static NBTTagCompound readFile(File file, boolean compressed) throws IOException {
         InputStream input = new FileInputStream(file);
         if(compressed)
@@ -69,10 +119,25 @@ public final class NBTUtil {
         return (NBTTagCompound) nbt;
     }
 
+    /**
+     * 将指定 NBT 复合标签对象写入到指定文件
+     *
+     * @param nbt NBT 复合对象
+     * @param file 文件
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     public static void writeFile(NBTTagCompound nbt, File file) throws IOException {
         writeFile(nbt, file, true);
     }
 
+    /**
+     * 将指定 NBT 复合标签对象写入到指定文件
+     *
+     * @param nbt NBT 复合对象
+     * @param file 文件
+     * @param compressed 是否压缩数据
+     * @throws IOException 如果 IO 错误则抛出异常
+     */
     public static void writeFile(NBTTagCompound nbt, File file, boolean compressed) throws IOException {
         if(!file.exists()) {
             if(file.getParentFile() != null && !file.getParentFile().exists())

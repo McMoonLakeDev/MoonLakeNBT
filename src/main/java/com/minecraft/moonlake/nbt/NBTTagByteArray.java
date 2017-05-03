@@ -23,29 +23,68 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * <h1>NBTTagByteArray</h1>
+ * NBT 标签字节数组类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagDatable
+ * @see Byte
+ */
 public class NBTTagByteArray extends NBTTagDatable<Byte[]> {
 
+    /**
+     * NBT 标签字节数组类型数据构造函数
+     */
     public NBTTagByteArray() {
         this(new Byte[0]);
     }
 
+    /**
+     * NBT 标签字节数组类型数据构造函数
+     *
+     * @param value 基础字节数组类型值
+     */
     public NBTTagByteArray(byte[] value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签字节数组类型数据构造函数
+     *
+     * @param value 包装字节数组类型值
+     */
     public NBTTagByteArray(Byte[] value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签字节数组类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagByteArray(String name) {
         this(name, new Byte[0]);
     }
 
+    /**
+     * NBT 标签字节数组类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 基础字节数组类型值
+     */
     public NBTTagByteArray(String name, byte[] value) {
         super(name, null); // 先传一个 null 值之后再重新设置新值
         set(value);
     }
 
+    /**
+     * NBT 标签字节数组类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 包装字节数组类型值
+     */
     public NBTTagByteArray(String name, Byte[] value) {
         super(name, value);
     }
@@ -55,6 +94,11 @@ public class NBTTagByteArray extends NBTTagDatable<Byte[]> {
         return NBTType.BYTE_ARRAY;
     }
 
+    /**
+     * 设置此 NBT 标签字节数组数据的值
+     *
+     * @param value 新值
+     */
     public void set(byte[] value) {
         Byte[] value0 = new Byte[value.length];
         for(int i = 0; i < value0.length; i++)
@@ -62,11 +106,26 @@ public class NBTTagByteArray extends NBTTagDatable<Byte[]> {
         super.value = value0;
     }
 
+    /**
+     * 获取此 NBT 标签字节数组的值
+     *
+     * @return 基础字节数组类型值
+     */
     public byte[] get() {
         byte[] value0 = new byte[value.length];
         for(int i = 0; i < value0.length; i++)
             value0[i] = value[i];
         return value0;
+    }
+
+    /**
+     * 获取此 NBT 标签字节数组的值
+     *
+     * @return 包装字节数组类型值
+     */
+    @Override
+    public Byte[] getValue() {
+        return super.getValue();
     }
 
     @Override

@@ -22,24 +22,57 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+/**
+ * <h1>NBTTagShort</h1>
+ * NBT 标签短整数类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagNumber
+ * @see Short
+ */
 public class NBTTagShort extends NBTTagNumber<Short> {
 
+    /**
+     * NBT 标签短整数类型数据构造函数
+     */
     public NBTTagShort() {
         this((short) 0);
     }
 
+    /**
+     * NBT 标签短整数类型数据构造函数
+     *
+     * @param value 值
+     */
     public NBTTagShort(short value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签短整数类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagShort(String name) {
         this(name, (short) 0);
     }
 
+    /**
+     * NBT 标签短整数类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 值
+     */
     public NBTTagShort(String name, Short value) {
         super(name, value);
     }
 
+    /**
+     * 设置此 NBT 标签短整数数据的值
+     *
+     * @param value 新值
+     */
     public void set(short value) {
         super.value = value;
     }

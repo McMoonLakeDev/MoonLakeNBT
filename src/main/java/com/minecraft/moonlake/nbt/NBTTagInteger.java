@@ -22,24 +22,57 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+/**
+ * <h1>NBTTagInteger</h1>
+ * NBT 标签整数类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagNumber
+ * @see Integer
+ */
 public class NBTTagInteger extends NBTTagNumber<Integer> {
 
+    /**
+     * NBT 标签整数类型数据构造函数
+     */
     public NBTTagInteger() {
         this(0);
     }
 
+    /**
+     * NBT 标签整数类型数据构造函数
+     *
+     * @param value 值
+     */
     public NBTTagInteger(int value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签整数类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagInteger(String name) {
         this(name, 0);
     }
 
+    /**
+     * NBT 标签整数类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 值
+     */
     public NBTTagInteger(String name, Integer value) {
         super(name, value);
     }
 
+    /**
+     * 设置此 NBT 标签整数数据的值
+     *
+     * @param value 新值
+     */
     public void set(int value) {
         super.value = value;
     }

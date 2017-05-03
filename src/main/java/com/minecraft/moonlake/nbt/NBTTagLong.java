@@ -22,24 +22,57 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+/**
+ * <h1>NBTTagLong</h1>
+ * NBT 标签长整数类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagNumber
+ * @see Long
+ */
 public class NBTTagLong extends NBTTagNumber<Long> {
 
+    /**
+     * NBT 标签长整数类型数据构造函数
+     */
     public NBTTagLong() {
         this(0L);
     }
 
+    /**
+     * NBT 标签长整数类型数据构造函数
+     *
+     * @param value 值
+     */
     public NBTTagLong(long value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签长整数类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagLong(String name) {
         this(name, 0L);
     }
 
+    /**
+     * NBT 标签长整数类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 值
+     */
     public NBTTagLong(String name, Long value) {
         super(name, value);
     }
 
+    /**
+     * 设置此 NBT 标签长整数数据的值
+     *
+     * @param value 新值
+     */
     public void set(long value) {
         super.value = value;
     }

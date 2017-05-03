@@ -23,29 +23,68 @@ import java.io.DataOutput;
 import java.io.IOException;
 import java.util.Arrays;
 
+/**
+ * <h1>NBTTagIntegerArray</h1>
+ * NBT 标签整数数组类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagDatable
+ * @see Integer
+ */
 public class NBTTagIntegerArray extends NBTTagDatable<Integer[]> {
 
+    /**
+     * NBT 标签整数数组类型数据构造函数
+     */
     public NBTTagIntegerArray() {
         this(new Integer[0]);
     }
 
+    /**
+     * NBT 标签整数数组类型数据构造函数
+     *
+     * @param value 基础整数数组类型值
+     */
     public NBTTagIntegerArray(int[] value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签整数数组类型数据构造函数
+     *
+     * @param value 包装整数数组类型值
+     */
     public NBTTagIntegerArray(Integer[] value) {
         this("", value);
     }
 
+    /**
+     * NBT 标签整数数组类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagIntegerArray(String name) {
         this(name, new Integer[0]);
     }
 
+    /**
+     * NBT 标签整数数组类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 基础整数数组类型值
+     */
     public NBTTagIntegerArray(String name, int[] value) {
         super(name, null); // 先传一个 null 值之后再重新设置新值
         set(value);
     }
 
+    /**
+     * NBT 标签整数数组类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 包装整数数组类型值
+     */
     public NBTTagIntegerArray(String name, Integer[] value) {
         super(name, value);
     }
@@ -55,6 +94,11 @@ public class NBTTagIntegerArray extends NBTTagDatable<Integer[]> {
         return NBTType.INTEGER_ARRAY;
     }
 
+    /**
+     * 设置此 NBT 标签整数数组数据的值
+     *
+     * @param value 新值
+     */
     public void set(int[] value) {
         Integer[] value0 = new Integer[value.length];
         for(int i = 0; i < value0.length; i++)
@@ -62,11 +106,26 @@ public class NBTTagIntegerArray extends NBTTagDatable<Integer[]> {
         super.value = value0;
     }
 
+    /**
+     * 获取此 NBT 标签整数数组的值
+     *
+     * @return 基础整数数组类型值
+     */
     public int[] get() {
         int[] value0 = new int[value.length];
         for(int i = 0; i < value0.length; i++)
             value0[i] = value[i];
         return value0;
+    }
+
+    /**
+     * 获取此 NBT 标签整数数组的值
+     *
+     * @return 包装整数数组类型值
+     */
+    @Override
+    public Integer[] getValue() {
+        return super.getValue();
     }
 
     @Override

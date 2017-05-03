@@ -22,16 +22,39 @@ import java.io.DataInput;
 import java.io.DataOutput;
 import java.io.IOException;
 
+/**
+ * <h1>NBTTagShort</h1>
+ * NBT 标签字符串类型数据
+ *
+ * @version 1.0
+ * @author Month_Light
+ * @see NBTTagDatable
+ * @see String
+ */
 public class NBTTagString extends NBTTagDatable<String> {
 
+    /**
+     * NBT 标签字符串类型数据构造函数
+     */
     public NBTTagString() {
         this("", "");
     }
 
+    /**
+     * NBT 标签字符串类型数据构造函数
+     *
+     * @param name 特殊名
+     */
     public NBTTagString(String name) {
         this(name, "");
     }
 
+    /**
+     * NBT 标签字符串类型数据构造函数
+     *
+     * @param name 特殊名
+     * @param value 值
+     */
     public NBTTagString(String name, String value) {
         super(name, value);
     }
