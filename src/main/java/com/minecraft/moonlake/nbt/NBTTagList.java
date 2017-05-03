@@ -239,7 +239,7 @@ public class NBTTagList<E extends NBTBase> extends NBTTagDatable<List<E>> implem
     }
 
     /**
-     * 将次 NBT 列表标签转换为字符串
+     * 将此 NBT 列表标签转换为字符串
      *
      * @param json 是否 Json 格式
      * @return 字符串

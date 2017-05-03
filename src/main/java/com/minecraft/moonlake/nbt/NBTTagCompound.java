@@ -650,7 +650,7 @@ public class NBTTagCompound extends NBTTagDatable<Map<String, NBTBase>> implemen
     }
 
     /**
-     * 将次 NBT 复合标签转换为字符串
+     * 将此 NBT 复合标签转换为字符串
      *
      * @param json 是否 Json 格式
      * @return 字符串
