@@ -60,6 +60,7 @@
                 <directory>src/main/resources/</directory>
                 <filtering>true</filtering>
             </resource>
+            <!-- 这个支持库暂时不需要这些资源打包在一起
             <resource>
                 <directory>${project.basedir}/</directory>
                 <includes>
@@ -68,6 +69,7 @@
                 </includes>
                 <filtering>true</filtering>
             </resource>
+            -->
         </resources>
     </build>
 
